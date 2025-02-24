@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform[]_patrolPoints;
     private int _patrolIndex;
     private Transform _playerTransform;
-    [SerializeField] private float _visionRange = 15;
+    [SerializeField] private float _visionRange = 5;
     [SerializeField] private float _attackRange = 2;
     void Awake()
     {
@@ -99,6 +99,6 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("atacando");
 
-        currentState = EnemyState.Searching;
+        currentState = EnemyState.Patrolling;
     }
 }
