@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
     private int _patrolIndex;
     private Transform _playerTransform;
     [SerializeField] private float _visionRange = 15;
-    [SerializeField] private float _attackRange = 3;
+    [SerializeField] private float _attackRange = 2;
     void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
@@ -45,14 +45,8 @@ public class Enemy : MonoBehaviour
             case EnemyState.Patrolling:
                 Patrol();
             break;
-            case EnemyState.Searching:
-                Search();
-            break;
             case EnemyState.Chasing:
                 Chase();
-            break;
-            case EnemyState.Waiting:
-                Wait();
             break;
             case EnemyState.Attacking:
                 Attack();
@@ -77,14 +71,8 @@ public class Enemy : MonoBehaviour
 
     void SetPatrolPoint()
     {
-        _agent.destination = _patrolPoints[Random.Range(0, _patrolPoints.Length)].position; //busca un punto aleatorio
+        _agent.destination = _patrolPoints[Random.Range(0, _patrolPoints.Length)].position;
     }
-
-    void Search()
-    {
-
-    }
-
     void Chase()
     {
         
@@ -105,11 +93,6 @@ public class Enemy : MonoBehaviour
     bool InRange(float range)
     {
         return Vector3.Distance(transform.position, _playerTransform.position) < range;
-    }
-
-    void Wait()
-    {
-
     }
 
     void Attack()
